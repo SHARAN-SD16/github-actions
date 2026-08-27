@@ -1,0 +1,13 @@
+name: main application pipeline
+on:
+  push:
+    branches:
+       - main
+  workflow_dispatch:
+jobs:
+  test:
+    name: call reusable workflow_call
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: "20"
+      
