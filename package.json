@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-github-actions",
+  "version": "1.0.0",
+  "description": "Simple Node.js application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^5.0.0"
+  }
+}
