@@ -1,16 +1,15 @@
-name: Node.js CI
+name: Node.js Docker CI
 
 on:
   push:
     branches:
       - main
 
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   test:
+    name: Test Node.js Application
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +35,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
       - name: Build Docker Image
-        uses: docker build -t nodejs-github-actions:latest .
+        run: docker build -t nodejs-github-actions:latest .
+
       - name: Verify Docker Image
-        uses: docker images
+        run: docker images
