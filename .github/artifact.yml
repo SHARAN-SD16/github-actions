@@ -1,0 +1,29 @@
+name: artifact practise
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create a simple file
+        run: |
+          mkdir output
+          echo "hello from github actions artifact" > output/message.txt
+      - name: upload artifact
+        uses: action/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: output/
+  download:
+    needs: build
+    runs-on: ubuntu:latest
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with: 
+          name: my-artifact
+          path: downloaded-output/
+      - name: check downloaded files
+        run: |
+          ls -la downloaded files
+          cat downloaded-output/message.txt
