@@ -1,28 +1,34 @@
-name: Reusable Node.Js Test
+name: Reusable Node.js Test
+
 on:
   workflow_call:
     inputs:
       node-version:
-        description: "node.js version"
+        description: "Node.js version"
         required: false
-        typr: string
+        type: string
         default: "20"
+
 jobs:
   test:
-    name: Test Node
-    runs-on: ubuntu:latest
+    name: Test Node.js Application
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: action/checkout@v4
-      - name: setup nodejs
-        uses: action/setup-node@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node-version }}
           cache: npm
-      - name: install dependencies
-        uses: npm ci
-      - name: run test
-        uses: npm test
-      - name: check javascript syntax
-        uses: node --check app.js
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Check JavaScript Syntax
+        run: node --check app.js
