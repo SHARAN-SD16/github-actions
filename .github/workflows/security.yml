@@ -1,0 +1,12 @@
+name: secrets practise
+on:
+  workflow_dispatch:
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: use secrets
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          echo "username configured successfully"
