@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create a sample file
+      - name: Create a simple file
         run: |
           mkdir output
           echo "Hello from GitHub Actions Artifact!" > output/message.txt
